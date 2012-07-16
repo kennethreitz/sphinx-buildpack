@@ -150,10 +150,6 @@ set +e
 mkdir .heroku &> /dev/null
 HEROKU_DIR_STATUS=$?
 
-# TODO: This is a new app, disable injection.
-# [ $HEROKU_DIR_STATUS -eq 0 ] && {
-  #TODO: touch .heroku/injection_disabled
-# }
 set -e
 
 # Buildpack profile init script
@@ -200,10 +196,11 @@ fi
 puts-step "Installing dependencies using pip version $(pip --version | awk '{print $2}')"
 pip install --use-mirrors -r requirements.txt --exists-action=w --src=./.heroku/src | indent
 
-# Do additional application hackery if applications appears to be a Django app.
-# Optionally, disable all Django-specific changes with `DISABLE_INJECTION` env.
-#
-# See [`bin/steps/django`](django.html).
+puts-step "Installing Sphinx"
+pip install --use-mirrors sphinx
+
+puts-step "Installing goldenarch"
+pip install --use-mirrors sphinx
 
 # Make Virtualenv's paths relative for portability.
 set +e
