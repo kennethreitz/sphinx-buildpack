@@ -188,6 +188,9 @@ echo "$OUT" | indent
 
 set -e
 
+# Pylibmc support.
+# See [`bin/steps/pylibmc`](pylibmc.html).
+source $BIN_DIR/steps/pylibmc
 
 # Activate the Virtualenv.
 puts-step "Activating virtualenv"
