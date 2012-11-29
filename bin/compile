@@ -188,6 +188,9 @@ echo "$OUT" | indent
 
 set -e
 
+# Pylibmc support.
+# See [`bin/steps/pylibmc`](pylibmc.html).
+source $BIN_DIR/steps/pylibmc
 
 # Activate the Virtualenv.
 puts-step "Activating virtualenv"
@@ -212,7 +215,7 @@ cd $SPHINX_DIR
 make html
 
 cd $BUILD_DIR
-HTML_DIR=$(dirname $(find . -maxdepth 5 -type f -name 'index.html' | head -1))
+HTML_DIR=$(dirname $(find . -maxdepth 5 -type f -path '*/html/index.html' | head -1))
 
 puts-step "Installing goldenarch"
 pip install --use-mirrors goldenarch | indent
